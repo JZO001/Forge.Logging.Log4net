@@ -16,9 +16,7 @@ namespace Forge.Logging.Log4net
         /// <returns>IServiceCollection</returns>
         public static IServiceCollection AddForgeLog4NetLogging(this IServiceCollection services)
         {
-            return services
-                .AddSingleton<ILog, Log4NetLog>()
-                .AddSingleton<ILoggerWrapper, Log4NetManager>(factory => Log4NetManager.Instance);
+            return services.AddSingleton<ILoggerWrapper, Log4NetManager>(factory => Log4NetManager.Instance);
         }
 
     }
