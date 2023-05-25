@@ -1,4 +1,4 @@
-﻿#if NET461_OR_GREATER || NETSTANDARD2_0_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+﻿#if NET461_OR_GREATER || NETSTANDARD2_0_OR_GREATER
 
 using Forge.Logging.Abstraction;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +16,9 @@ namespace Forge.Logging.Log4net
         /// <returns>IServiceCollection</returns>
         public static IServiceCollection AddForgeLog4NetLogging(this IServiceCollection services)
         {
-            return services.AddSingleton<ILoggerWrapper, Log4NetManager>(factory => Log4NetManager.Instance);
+            return services
+                .AddSingleton<ILog, Log4NetLog>()
+                .AddSingleton<ILoggerWrapper, Log4NetManager>(factory => Log4NetManager.Instance);
         }
 
     }
